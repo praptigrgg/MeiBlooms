@@ -1,16 +1,23 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-
-});
-
-
-Route::view('/login', 'auth.login'); // Login page
-Route::view('/register', 'auth.register'); // Register page
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Frontend Routes(User Part)
+
+Route::get('/',[FrontendHomeController::class,'home'])->name('frontend.home');
+
+
+// Dashboard Route
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Users
+    Route::resource('users', UserController::class)->names('users');
+});
