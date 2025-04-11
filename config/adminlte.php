@@ -339,6 +339,18 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
+            'text' => 'Bouquets',
+            'url' => 'admin/bouquets',
+            'icon' => 'fas fa-user',
+        ],
+        [
+            'text' => 'Messages',
+            'url'  => 'admin/messages/{message}',
+            'icon' => 'fas fa-envelope',
+        ],
+
+
+        [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
