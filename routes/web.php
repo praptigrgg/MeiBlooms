@@ -14,6 +14,8 @@ use App\Http\Controllers\Frontend\FrontendPageController;
 use App\Http\Controllers\Frontend\FrontendShopController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\KhaltiController;
+use App\Http\Controllers\KhaltiShopController;
 use App\Http\Controllers\ReviewController;
 use App\Models\CategoryController as ModelsCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -81,3 +83,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 //Checkout
 Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');
+
+
+//Khalti
+Route::post('/bouquet/payment/initiate', [KhaltiShopController::class, 'initiate'])->name('khalti.bouquet.initiate');
+Route::get('/bouquet/payment/verify', [KhaltiShopController::class, 'verify'])->name('khalti.bouquet.verify');
+
