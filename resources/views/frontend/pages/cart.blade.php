@@ -39,6 +39,8 @@
         </table>
 
         <a href="{{ route('cart.clear') }}" class="btn btn-outline-danger">Clear Cart</a>
+        <a href="{{ route('checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
+
     @else
         <p>Your cart is empty 😕</p>
     @endif

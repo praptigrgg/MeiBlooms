@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\BouquetController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontendCartController;
@@ -68,8 +70,14 @@ Route::post('/bouquet/{id}/review', [ReviewController::class, 'store'])->name('r
 
 Route::get('/bouquets/{id}', [BouquetController::class, 'show'])->name('bouquet.details');
 
-
-
 Route::get('/category/{id}/bouquets', [FrontendCategoryController::class, 'showBouquets'])->name('category.bouquets');
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('orders',OrderController::class);
+});
 
+
+
+//Checkout
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');

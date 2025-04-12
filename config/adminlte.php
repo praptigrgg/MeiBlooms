@@ -350,7 +350,11 @@ return [
         ],
 
 
-
+        [
+            'text' => 'Orders',
+            'route' => 'admin.orders.index',
+            'icon' => 'fas fa-shopping-cart',
+        ],
         [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
