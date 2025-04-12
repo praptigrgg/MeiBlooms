@@ -53,5 +53,10 @@
             </tbody>
         </table>
     </div>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $bouquets->onEachSide(1)->links('pagination::bootstrap-5') }}
+    </div>
+
+
 </div>
 @endsection

@@ -1,5 +1,6 @@
 {{-- resources/views/frontend/pages/shop.blade.php --}}
 @extends('frontend.main')
+@section('title', 'Our Products')
 
 
 @section('content')

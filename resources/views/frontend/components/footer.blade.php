@@ -1,13 +1,13 @@
-<footer class="py-3 mt-auto" style="background-color: #212529">
+<footer class="py-3 mt-auto" style="background-color: #dfc1cd">
     <div class="container text-center">
-        <small class="text-white-50">© {{ date('Y') }} Mei Blooms. All rights reserved.</small>
+        <small class="text-black-50">© {{ date('Y') }} Mei Blooms. All rights reserved.</small>
     </div>
 </footer>
 <style>
     /* Footer Styling */
 footer {
   background-color: #212529;
-  position: fixed; /* Fix the footer at the bottom */
+  /* Fix the footer at the bottom */
   bottom: 0; /* Position it at the bottom of the page */
   left: 0;
   width: 100%; /* Make it span the full width of the page */
@@ -25,7 +25,7 @@ footer small {
 
 /* To ensure the content doesn't overlap with the footer */
 body {
-  padding-bottom: 50px; /* Adjust this to the height of your footer */
+  padding-bottom: 0px; /* Adjust this to the height of your footer */
 }
 
 </style>
