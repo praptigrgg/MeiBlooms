@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\FrontendPageController;
 use App\Http\Controllers\Frontend\FrontendShopController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\ReviewController;
 use App\Models\CategoryController as ModelsCategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -63,9 +64,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::resource('bouquets', BouquetController::class);
-});
+Route::post('/bouquet/{id}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+
 Route::get('/bouquets/{id}', [BouquetController::class, 'show'])->name('bouquet.details');
 
 

@@ -48,16 +48,16 @@ class BouquetController extends Controller
     }
     public function show($id)
     {
-        $bouquet = Bouquet::findOrFail($id);
+        $bouquet = Bouquet::with(['reviews.user'])->findOrFail($id);
 
-        $relatedBouquets = Bouquet::where('category_id', $bouquet->category_id)
-                                ->where('id', '!=', $bouquet->id)
-                                ->latest()
-                                ->take(4)
-                                ->get();
+        $relatedBouquets = Bouquet::where('id', '!=', $bouquet->id)
+                                    ->inRandomOrder()
+                                    ->take(4)
+                                    ->get();
 
         return view('frontend.bouquet.details', compact('bouquet', 'relatedBouquets'));
     }
+
     public function edit($id)
     {
         $bouquet = Bouquet::findOrFail($id);

@@ -24,16 +24,26 @@ class FrontendCartController extends Controller
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name" => $bouquet->name,
-                "price" => $bouquet->price,
+                "name"     => $bouquet->name,
+                "price"    => $bouquet->price,
                 "quantity" => 1,
-                "image" => $bouquet->image
+                "image"    => $bouquet->image,
             ];
         }
 
         session()->put('cart', $cart);
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Bouquet added to cart!'
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Bouquet added to cart!');
     }
+
+
 
     public function remove($id)
     {

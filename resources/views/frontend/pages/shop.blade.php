@@ -82,8 +82,8 @@
 
     </div>
 
-    <!-- Pagination -->
-    <div class="mt-8 text-center">
-        {{ $bouquets->withQueryString()->links() }}
+    <div class="d-flex justify-content-center mt-4">
+        {{ $bouquets->withQueryString()->links('pagination::bootstrap-5') }}
     </div>
+
 @endsection

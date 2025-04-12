@@ -43,4 +43,60 @@
         </div>
     </div>
 </section>
+{{-- 🌟 Reviews Section --}}
+<section class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h3 class="mb-4">Customer Reviews</h3>
+
+            {{-- Show Existing Reviews --}}
+            @if ($bouquet->reviews->count())
+                @foreach ($bouquet->reviews->sortByDesc('created_at') as $review)
+                    <div class="border rounded p-3 mb-3">
+                        <strong>{{ $review->user->name }}</strong>
+                        <span class="text-warning">
+                            @for ($i = 0; $i < $review->rating; $i++) ★ @endfor
+                            @for ($i = $review->rating; $i < 5; $i++) ☆ @endfor
+                        </span>
+                        <small class="text-muted ms-2">{{ $review->created_at->diffForHumans() }}</small>
+                        <p class="mt-2">{{ $review->comment }}</p>
+                    </div>
+                @endforeach
+            @else
+                <p class="text-muted">No reviews yet. Be the first to leave one!</p>
+            @endif
+
+            {{-- Review Form --}}
+            @auth
+                <div class="card mt-4">
+                    <div class="card-header">Leave a Review</div>
+                    <div class="card-body">
+                        <form action="{{ route('reviews.store', $bouquet->id) }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="rating" class="form-label">Rating</label>
+                                <select name="rating" class="form-select" required>
+                                    <option value="">Choose rating</option>
+                                    @for ($i = 5; $i >= 1; $i--)
+                                        <option value="{{ $i }}">{{ $i }} Star{{ $i > 1 ? 's' : '' }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="comment" class="form-label">Comment</label>
+                                <textarea name="comment" class="form-control" rows="3" placeholder="Write something..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <p class="text-muted mt-4">Please <a href="{{ route('login') }}">log in</a> to leave a review.</p>
+            @endauth
+        </div>
+    </div>
+</section>
+
 @endsection

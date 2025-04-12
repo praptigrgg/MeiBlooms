@@ -345,9 +345,10 @@ return [
         ],
         [
             'text' => 'Messages',
-            'url'  => 'admin/messages/{message}',
+            'route' => 'admin.messages.index',
             'icon' => 'fas fa-envelope',
         ],
+
 
 
         [
